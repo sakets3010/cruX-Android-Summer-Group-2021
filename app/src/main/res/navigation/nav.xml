@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    android:label="@string/currentWeather"
+    app:startDestination="@id/currentWeatherFragment">
+
+    <fragment
+        android:id="@+id/currentWeatherFragment"
+        android:name="com.example.howsthesky.CurrentWeatherFragment"
+        android:label="@string/currentWeather"
+        tools:layout="@layout/fragment_current_weather">
+        <action
+            android:id="@+id/action_currentWeatherFragment_to_recentCitiesFragment"
+            app:destination="@id/recentCitiesFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/recentCitiesFragment"
+        android:name="com.example.howsthesky.RecentCitiesFragment"
+        android:label="@string/recentCities"
+        tools:layout="@layout/fragment_recent_cities">
+        <action
+            android:id="@+id/action_recentCitiesFragment_to_currentWeatherFragment"
+            app:destination="@id/currentWeatherFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/currentWeatherFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

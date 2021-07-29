@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">HowsTheSky</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_city">Enter City Name</string>
+    <string name="check_weather">Check Weather</string>
+    <string name="navigate">Navigate</string>
+    <string name="temperature">23°C</string>
+    <string name="weatherDetail">Thunderstorm</string>
+    <string name="city">Hyderabad</string>
+    <string name="recentCities">Recent Cities</string>
+    <string name="currentWeather">Current Weather</string>
 </resources>
