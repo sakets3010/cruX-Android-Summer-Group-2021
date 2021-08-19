@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".CurrentWeatherFragment">
+    tools:context=".currentWeather.CurrentWeatherFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/city">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_username_edit"
+                android:id="@+id/cityNameEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/enter_city" />

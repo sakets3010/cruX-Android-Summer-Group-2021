@@ -1,18 +1,24 @@
-package com.example.howsthesky
+package com.example.howsthesky.currentWeather
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.howsthesky.R
 import com.example.howsthesky.databinding.FragmentCurrentWeatherBinding
+import com.example.howsthesky.helper.Weather
+import com.google.android.material.snackbar.Snackbar
 
 
 class CurrentWeatherFragment : Fragment() {
+
+    private val viewModel: CurrentWeatherViewModel by activityViewModels()
     private lateinit var binding: FragmentCurrentWeatherBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +36,17 @@ class CurrentWeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setTextFields()
+
+        binding.checkWeatherButton.setOnClickListener {
+            val cityName = binding.cityNameEdit.text.toString()
+            if (cityName.isNotEmpty()) {
+                viewModel.insert(Weather(cityName = cityName))
+                binding.cityNameEdit.text?.clear()
+            } else {
+                Snackbar.make(requireView(), "city name not entered", Snackbar.LENGTH_LONG).show()
+            }
+
+        }
 
         binding.navigateToCities.setOnClickListener {
             findNavController().navigate(R.id.action_currentWeatherFragment_to_recentCitiesFragment)

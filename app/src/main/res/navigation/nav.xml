@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/currentWeatherFragment"
-        android:name="com.example.howsthesky.CurrentWeatherFragment"
+        android:name="com.example.howsthesky.currentWeather.CurrentWeatherFragment"
         android:label="@string/currentWeather"
         tools:layout="@layout/fragment_current_weather">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/recentCitiesFragment"
-        android:name="com.example.howsthesky.RecentCitiesFragment"
+        android:name="com.example.howsthesky.recentCities.RecentCitiesFragment"
         android:label="@string/recentCities"
         tools:layout="@layout/fragment_recent_cities">
         <action
