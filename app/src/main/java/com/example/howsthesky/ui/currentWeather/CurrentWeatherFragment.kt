@@ -1,4 +1,4 @@
-package com.example.howsthesky.currentWeather
+package com.example.howsthesky.ui.currentWeather
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.howsthesky.R
 import com.example.howsthesky.databinding.FragmentCurrentWeatherBinding
-import com.example.howsthesky.helper.Weather
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -40,7 +40,7 @@ class CurrentWeatherFragment : Fragment() {
         binding.checkWeatherButton.setOnClickListener {
             val cityName = binding.cityNameEdit.text.toString()
             if (cityName.isNotEmpty()) {
-                viewModel.insert(Weather(cityName = cityName))
+                viewModel.getWeather(cityName = cityName)
                 binding.cityNameEdit.text?.clear()
             } else {
                 Snackbar.make(requireView(), "city name not entered", Snackbar.LENGTH_LONG).show()
@@ -55,12 +55,13 @@ class CurrentWeatherFragment : Fragment() {
     }
 
     private fun setTextFields() {
-        with(binding) {
-            temperature.text = getString(R.string.temperature)
-            weatherDetails.text = getString(R.string.weatherDetail)
-            city.text = getString(R.string.city)
-        }
+        viewModel.currentWeather.observe(viewLifecycleOwner, Observer { it ->
+            (with(binding){
+                city.text = it.cityName
+                temperature.text = viewModel.formatTemperature(it.main.temp)
+                weatherDetails.text = it.weather[0].description
+            })
+        })
     }
-
 
 }
